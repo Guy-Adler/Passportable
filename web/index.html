@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Passportable</title>
+        <script type="text/javascript" src="/eel.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <script type="text/javascript" src="js/backend.js"></script>
+        <script type="text/javascript" src="js/index.js" defer></script>
+    </head>
+    <body>
+        <h1>Passportable</h1>
+        <div class="content">
+            <div class="if">
+                <h3>Images Folder</h3>
+                <input type="text" id="ifp" placeholder="Path to images folder">
+                <button id='images-folder'>Browse</button>
+            </div>
+            <br>
+            <div class="of">
+                <h3>Output File</h3>
+                <input type="text" id="ofp" placeholder="Path to output file">
+                <button id='output-file'>Browse</button>
+            </div>
+            <button id="go">GO</button>
+        </div>
+        <div id="output" hidden>
+            <hr>
+            <progress id="prog" value="0"></progress>
+            <p id="output_text"></p>
+        </div>
+    </body>
+</html>
