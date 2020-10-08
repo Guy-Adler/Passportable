@@ -1,3 +1,3 @@
-document.getElementById('images-folder').addEventListener('click', getImagesFolderPath);
-document.getElementById('output-file').addEventListener('click', getOutputFilePath);
-document.getElementById('go').addEventListener('click', getMRZs);
+$('#images-folder').on('click', getImagesFolderPath);
+$('#output-file').on('click', getOutputFilePath);
+$('#go').on('click', getMRZs);

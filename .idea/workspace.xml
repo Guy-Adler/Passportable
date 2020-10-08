@@ -16,10 +16,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6189aeb0-8b05-42ba-a5e6-d85739bf92da" name="Default Changelist" comment="update?">
+    <list default="true" id="6189aeb0-8b05-42ba-a5e6-d85739bf92da" name="Default Changelist" comment="- Made it work (backend.js)&#10;- Made the response only include the basename of the file (ui.py)&#10;- Added output in the app (backend.js)&#10;- Removed unnecessary console.log()s (backend.js)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/js/backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/backend.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +112,13 @@
       <option name="presentableId" value="LOCAL‎00004" />
       <updated>1602147232412</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL‎00005" summary="- Made it work (backend.js)&#10;- Made the response only include the basename of the file (ui.py)&#10;- Added output in the app (backend.js)&#10;- Removed unnecessary console.log()s (backend.js)">
+      <created>1602149996208</created>
+      <option name="number" value="LOCAL‎00005" />
+      <option name="presentableId" value="LOCAL‎00005" />
+      <updated>1602149996208</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -149,7 +156,8 @@
     </ignored-roots>
     <MESSAGE value="update?" />
     <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="- Made it work (backend.js)&#10;- Made the response only include the basename of the file (ui.py)&#10;- Added output in the app (backend.js)&#10;- Removed unnecessary console.log()s (backend.js)" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Made it work (backend.js)&#10;- Made the response only include the basename of the file (ui.py)&#10;- Added output in the app (backend.js)&#10;- Removed unnecessary console.log()s (backend.js)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602089238668">
@@ -164,30 +172,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="822" y="418" key="Github.ShareDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602085299001" />
-    <state width="1900" height="136" key="GridCell.Tab.0.bottom" timestamp="1602149756399">
+    <state width="1900" height="136" key="GridCell.Tab.0.bottom" timestamp="1602160263603">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1900" height="136" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602149756399" />
-    <state width="1900" height="136" key="GridCell.Tab.0.center" timestamp="1602149756399">
+    <state width="1900" height="136" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602160263603" />
+    <state width="1900" height="136" key="GridCell.Tab.0.center" timestamp="1602160263603">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1900" height="136" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602149756399" />
-    <state width="1900" height="136" key="GridCell.Tab.0.left" timestamp="1602149756399">
+    <state width="1900" height="136" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602160263603" />
+    <state width="1900" height="136" key="GridCell.Tab.0.left" timestamp="1602160263602">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1900" height="136" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602149756399" />
-    <state width="1900" height="136" key="GridCell.Tab.0.right" timestamp="1602149756399">
+    <state width="1900" height="136" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602160263602" />
+    <state width="1900" height="136" key="GridCell.Tab.0.right" timestamp="1602160263603">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1900" height="136" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602149756399" />
+    <state width="1900" height="136" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602160263603" />
     <state x="491" y="165" key="SettingsEditor" timestamp="1602093803981">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="491" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1602093803981" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602147234759">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602149999275">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602147234759" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602149999275" />
     <state x="742" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602147018020">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -15,37 +15,39 @@ const save_passport = async (image, xlsx) => {
 };
 
 const getImagesFolderPath = async (event) => {
-    const imagesFolderPath = document.getElementById('ifp');
+    const imagesFolderPath = $('#ifp');
+    /*
     const path = await askForFolder();
     if (path !== null) {
-        imagesFolderPath.value = path;
+        imagesFolderPath.val(path);
     }
-    const images = await askForFiles(path);
+    */
+    imagesFolderPath.val("D:/Projects/Code/Python/Real Projects/Dad/MRZ/imgs");
+    const images = await askForFiles("D:/Projects/Code/Python/Real Projects/Dad/MRZ/imgs");
     window.images = images;
 };
 
 const getOutputFilePath = async (event) => {
-    const outputFilePath = document.getElementById('ofp');
+    const outputFilePath = $('#ofp');
+    /*
     const path = await askForFile();
     if (path !== null) {
-        outputFilePath.value = path;
+        outputFilePath.val(path);
     }
+    */
+    outputFilePath.val("D:/Projects/Code/Python/Real Projects/Dad/MRZ/fuck.xlsx");
 };
 
 const getMRZs = async (event) => {
-    document.getElementById('output').hidden = false;
+    $('#output').removeAttr("hidden");
     const images = window.images;
-    const xlsx = document.getElementById('ofp').value;
-    const prog = document.getElementById('prog');
-    const output = document.getElementById('output_text');
-    prog.max = images.length;
     for (let i = 0; i < images.length; i++) {
-        valid = await save_passport(images[i], xlsx);
-        prog.value++;
+        valid = await save_passport(images[i], $('#ofp').val());
+        $('#prog').width(((i + 1) / images.length) * 100 + '%');
         if (valid['name'] != '') {
-            output.innerHTML += `Saved <b>${valid["name"]}\'s</b> passport. (File: <b>${valid["file"]})</b><br>`;
+            $('#output_text').innerHTML += `Saved <b>${valid["name"]}\'s</b> passport. (File: <b>${valid["file"]})</b><br>`;
         } else {
-            output.innerHTML += `Skipped <b>${valid["file"]}</b> because no MRZ was found.<br>`;
+            $('#output_text').innerHTML += `Skipped <b>${valid["file"]}</b> because no MRZ was found.<br>`;
         }
     }
 };
