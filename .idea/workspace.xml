@@ -16,7 +16,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6189aeb0-8b05-42ba-a5e6-d85739bf92da" name="Default Changelist" comment="update?" />
+    <list default="true" id="6189aeb0-8b05-42ba-a5e6-d85739bf92da" name="Default Changelist" comment="update?">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,7 +42,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ui.py" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
@@ -144,10 +149,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602089238668" />
-    <state x="718" y="261" key="FileChooserDialogImpl" timestamp="1602089237233">
+    <state x="718" y="261" key="FileChooserDialogImpl" timestamp="1602146891709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="718" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602089237233" />
+    <state x="718" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602146891709" />
     <state x="822" y="418" key="Github.ShareDialog" timestamp="1602085299001">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -172,17 +177,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="491" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1602093803981" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602085557543">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602147114613">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602085557543" />
-    <state x="761" y="426" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1602085609149">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602147114613" />
+    <state x="742" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602147018020">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="761" y="426" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602085609149" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1602085964444">
+    <state x="742" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602147018020" />
+    <state x="761" y="426" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1602146966617">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602085964444" />
+    <state x="761" y="426" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602146966617" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1602147157737">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602147157737" />
   </component>
 </project>
