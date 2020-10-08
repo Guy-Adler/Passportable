@@ -46,7 +46,7 @@ def get_files(p):
     for f in os.listdir(p):
         if os.path.splitext(f)[1].lower() not in valid_extensions:
             continue
-        images.append(os.path.join(p, f))
+        images.append(os.path.join(p, f).replace('\\', '/'))
 
     return images
 
@@ -58,9 +58,9 @@ def save_passport(image, xlsx, y2k=30):
     if mrz.good:
         mrz.format_mrz(y2k)
         # mrz.save_to_xlsx(wb, xlsx)
-        response = {'file': image, 'name': f'{mrz.mrz["names"].title()} {mrz.mrz["surname"].title()}'}
+        response = {'file': os.path.basename(image), 'name': f'{mrz.mrz["names"].title()} {mrz.mrz["surname"].title()}'}
     else:
-        response = {'file': f'{image}', 'name': ''}
+        response = {'file': os.path.basename(image), 'name': ''}
 
     return response
 

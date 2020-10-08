@@ -1,25 +1,17 @@
 const askForFile = async () => {
-    x =  await eel.ask_file_save_location()();
-    console.log(x);
-    return x;
+    return await eel.ask_file_save_location()();
 };
 
 const askForFolder = async () => {
-    x = await eel.ask_folder()();
-    console.log(x);
-    return x;
+    return await eel.ask_folder()();
 };
 
 const askForFiles = async (p) => {
-    x = await eel.get_files(p)();
-    console.log(x);
-    return x;
+    return await eel.get_files(p)();
 };
 
 const save_passport = async (image, xlsx) => {
-    x =  await eel.save_passport(image, xlsx)()
-    console.log(x);
-    return x;
+    return await eel.save_passport(image, xlsx)()
 };
 
 const getImagesFolderPath = async (event) => {
@@ -42,7 +34,7 @@ const getOutputFilePath = async (event) => {
 
 const getMRZs = async (event) => {
     document.getElementById('output').hidden = false;
-    const images = document.getElementById('ifp').value;
+    const images = window.images;
     const xlsx = document.getElementById('ofp').value;
     const prog = document.getElementById('prog');
     const output = document.getElementById('output_text');
@@ -51,10 +43,9 @@ const getMRZs = async (event) => {
         valid = await save_passport(images[i], xlsx);
         prog.value++;
         if (valid['name'] != '') {
-            console.log(`Saved ${valid["name"]}\'s passport. (File: ${valid["file"]})`);
-        }
-        else {
-            console.log(`Skipped ${valid["file"]} because no MRZ was found.`);
+            output.innerHTML += `Saved <b>${valid["name"]}\'s</b> passport. (File: <b>${valid["file"]})</b><br>`;
+        } else {
+            output.innerHTML += `Skipped <b>${valid["file"]}</b> because no MRZ was found.<br>`;
         }
     }
 };
