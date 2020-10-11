@@ -8,29 +8,39 @@
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     </head>
-    <body>
-        <h1>Passportable</h1>
-        <div class="content">
-            <div class="if">
-                <h3>Images Folder</h3>
-                <input type="text" id="ifp" placeholder="Path to images folder">
-                <button id='images-folder' class="btn btn-info">Browse</button>
+    <body style="overflow: hidden">
+        <h1 style="text-align: center">Passportable</h1>
+        <form>
+            <div class="input-group px-3">
+                <div class="input-group-prepend">
+                    <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#images-folder-modal">Image Folder:</button>
+                </div>
+                <input type="text" class="form-control" placeholder="Path to images folder" id="ifp">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" id="images-folder" type="button">Browse</button>
+                </div>
             </div>
-            <br>
-            <div class="of">
-                <h3>Output File</h3>
-                <input type="text" id="ofp" placeholder="Path to output file">
-                <button id='output-file' class="btn btn-info">Browse</button>
+            <div class="input-group px-3 my-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Output Folder:</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Path to output file" id="ofp">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" id="output-file" type="button">Browse</button>
+                </div>
             </div>
-            <button id="go" class="btn btn-success">GO</button>
-        </div>
+        </form>
+            <div class="row justify-content-center">
+                <button id="go" class="btn btn-success" disabled>GO</button>
+            </div>
         <div id="output" hidden>
             <hr>
-            <!--<progress id="prog" value="0"></progress>-->
             <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" id="prog" style="width: 0%"></div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated" id="prog" style="width: 0%"></div>
             </div>
-            <p id="output_text"></p>
+            <div class="overflow-auto" style="height: 610px;">
+                <p id="output_text"></p>
+            </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

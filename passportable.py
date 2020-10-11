@@ -2,6 +2,7 @@ import os
 import time
 import openpyxl as xl
 from passporteye import read_mrz
+import csv
 
 
 class Mrz:
@@ -45,37 +46,30 @@ class Mrz:
         sheet.cell(row + 1, 3).value = self.mrz['names']
         sheet.cell(row + 1, 4).value = self.mrz['surname']
         sheet.cell(row + 1, 5).value = self.mrz['number']
-        sheet.cell(row + 1, 5).number_format = '0' * len(self.mrz['number'].replace('<', ''))
+        sheet.cell(row + 1, 5).number_format = '0' * len(str(self.mrz['number']))
         sheet.cell(row + 1, 6).value = self.mrz['nationality']
         sheet.cell(row + 1, 7).value = self.mrz['date_of_birth']
         sheet.cell(row + 1, 8).value = self.mrz['sex']
         sheet.cell(row + 1, 9).value = self.mrz['expiration_date']
         if self.mrz['mrz_type'] == 'TD3':
-            sheet.cell(row + 1, 10).value = self.mrz['number']
-            sheet.cell(row + 1, 10).number_format = '0' * len(self.mrz['number'].replace('<', ''))
+            sheet.cell(row + 1, 10).value = self.mrz['personal_number']
+            sheet.cell(row + 1, 10).number_format = '0' * len(str(self.mrz['personal_number']))
 
             workbook.save(output_path)
             print(f"Saved {self.mrz['names'].title()} {self.mrz['surname'].title()}'s passport.")
         else:
             print(f"Skiped {os.path.split(self.filename)[1]} because no MRZ was found")
 
+    def save_to_csv(self, output_path):
+        with open(output_path, 'r') as f:
+            csv_reader = csv.reader(f)
+            row = sum(1 for _ in csv_reader)
 
-def load(pti, ptx, prefixy2k):
-    path = pti
-    images = []
-    valid_extensions = ['.jpg', '.jpeg', '.png']
-    # Only include images (.jpg, .jpeg, .png). Other formats are not supported.
-    for f in os.listdir(path):
-        if os.path.splitext(f)[1].lower() not in valid_extensions:
-            continue
-        images.append(os.path.join(path, f))
+        data = [row, self.mrz['country'], self.mrz['names'], self.mrz['surname'], self.mrz['number'],
+                self.mrz['nationality'], self.mrz['date_of_birth'], self.mrz['sex'], self.mrz['expiration_date']]
+        if self.mrz['mrz_type'] == 'TD3':
+            data.append(self.mrz['personal_number'])
 
-    wb = xl.load_workbook(ptx)
-    for c, f in enumerate(images):
-        mrz = Mrz(f)
-        if mrz.good:
-            mrz.format_mrz(prefixy2k)
-            mrz.save_to_xlsx(wb, ptx)
-        print(f"{(c + 1) / len(images)} complete.")
-
-    print('Finished!')
+        with open('test.csv', 'a', newline="") as f:
+            csv_writer = csv.writer(f)
+            csv_writer.writerow(data)
