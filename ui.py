@@ -5,6 +5,8 @@ from tkinter.filedialog import askopenfilename, askdirectory
 from passportable import Mrz
 import openpyxl as xl
 import time
+import pandas as pd
+import traceback
 
 eel.init('web')
 
@@ -14,12 +16,19 @@ def ask_folder():
     """ Ask the user to select a folder
      :return the folder path, or None.
      """
-    root = Tk()
-    root.withdraw()
-    root.wm_attributes('-topmost', 1)
-    folder = askdirectory(parent=root)
-    root.update()
-    return folder if folder != "" else None
+    try:
+        root = Tk()
+        root.withdraw()
+        root.wm_attributes('-topmost', 1)
+        folder = askdirectory(parent=root)
+        root.update()
+        return {'folder': folder} if folder != "" else {}
+
+    except Exception:
+        trace = traceback.format_exc().split('\n')[:-1]  # Last line is always empty
+        lines = [[int((len(l) - len(l.lstrip(' '))) / 2), l] for l in trace[:-1]]
+        trace = {trace[-1]: lines}  # trace[-1] is the exception, the rest is traceback.
+        return {'exception': trace}
 
 
 @eel.expose
@@ -27,14 +36,21 @@ def ask_file_save_location():
     """ Ask the user where to save a file
      :return the file path, or None
      """
-    root = Tk()
-    root.withdraw()
-    root.wm_attributes('-topmost', 1)
-    file_types = [('Excel File or CSV File', '*.xlsx *.csv')]
-    file_path = askopenfilename(parent=root, filetypes=file_types)
-    root.update()
+    try:
+        root = Tk()
+        root.withdraw()
+        root.wm_attributes('-topmost', 1)
+        file_types = [('Excel File or CSV File', '*.xlsx *.csv')]
+        file_path = askopenfilename(parent=root, filetypes=file_types)
+        root.update()
 
-    return file_path if file_path != '' else None
+        return {'file_path': file_path} if file_path != '' else None
+
+    except Exception:
+        trace = traceback.format_exc().split('\n')[:-1]  # Last line is always empty
+        lines = [[int((len(l) - len(l.lstrip(' '))) / 2), l] for l in trace[:-1]]
+        trace = {trace[-1]: lines}  # trace[-1] is the exception, the rest is traceback.
+        return {'exception': trace}
 
 
 @eel.expose
@@ -46,14 +62,21 @@ def get_files(p):
     :return: a list of paths to all files
     :rtype: list[str]
     """
-    images = []
-    valid_extensions = ['.jpg', '.jpeg', '.png']
-    for f in os.listdir(p):
-        if os.path.splitext(f)[1].lower() not in valid_extensions:
-            continue
-        images.append(os.path.join(p, f).replace('\\', '/'))
+    try:
+        images = []
+        valid_extensions = ['.jpg', '.jpeg', '.png']
+        for f in os.listdir(p):
+            if os.path.splitext(f)[1].lower() not in valid_extensions:
+                continue
+            images.append(os.path.join(p, f).replace('\\', '/'))
 
-    return images
+        return {'images': images}
+
+    except Exception:
+        trace = traceback.format_exc().split('\n')[:-1]  # Last line is always empty
+        lines = [[int((len(l) - len(l.lstrip(' '))) / 2), l] for l in trace[:-1]]
+        trace = {trace[-1]: lines}  # trace[-1] is the exception, the rest is traceback..
+        return {'exception': trace}
 
 
 @eel.expose
@@ -68,21 +91,26 @@ def save_passport(image, xlsx, y2k=30):
     :type y2k: int
     :return: image name, name of person (if found)
     """
-    wb = xl.load_workbook(xlsx)
-    mrz = Mrz(image)
-    if mrz.good:
-        mrz.format_mrz(y2k)
-        """
-        if os.path.splitext(xlsx)[1].lower() == '.xlsx':
-            mrz.save_to_xlsx(wb, xlsx)
-        elif os.path.splitext(xlsx)[1].lower() == '.csv':
-            mrz.save_to_csv(xlsx)
-        """
-        response = {'file': os.path.basename(image), 'name': f'{mrz.mrz["names"].title()} {mrz.mrz["surname"].title()}'}
-    else:
-        response = {'file': os.path.basename(image), 'name': ''}
+    try:
+        wb = xl.load_workbook(xlsx)
+        mrz = Mrz(image)
+        if mrz.good:
+            mrz.format_mrz(y2k)
+            # if os.path.splitext(xlsx)[1].lower() == '.xlsx':
+            # mrz.save_to_xlsx(wb, xlsx)
+            # elif os.path.splitext(xlsx)[1].lower() == '.csv':
+            # mrz.save_to_csv(xlsx)
+            response = {'file': os.path.basename(image),
+                        'name': f'{mrz.mrz["names"].title()} {mrz.mrz["surname"].title()}'}
+        else:
+            response = {'file': os.path.basename(image), 'name': ''}
 
-    return response
+        return response
+    except Exception:
+        trace = traceback.format_exc().split('\n')[:-1]  # Last line is always empty
+        lines = [[int((len(l) - len(l.lstrip(' '))) / 2), l] for l in trace[:-1]]
+        trace = {trace[-1]: lines}  # trace[-1] is the exception, the rest is traceback.
+        return {'exception': trace}
 
 
 @eel.expose
@@ -94,9 +122,9 @@ def get_images_folder_content(p):
     :return: 2D list including file name and file type
     :rtype: list[list[str, str]]
     """
-    images = []
-    valid_extensions = ['.jpg', '.jpeg', '.png']
     try:
+        images = []
+        valid_extensions = ['.jpg', '.jpeg', '.png']
         for f in os.listdir(p):
             if os.path.splitext(f)[1].lower() not in valid_extensions:
                 continue
@@ -104,10 +132,41 @@ def get_images_folder_content(p):
             fname = os.path.basename(os.path.join(p, f).replace('\\', '/'))
             images.append([fname, ftime])
 
-        return images
+        return {'images': images}
 
-    except FileNotFoundError:
-        return []
+    except Exception:
+        trace = traceback.format_exc().split('\n')[:-1]  # Last line is always empty
+        lines = [[int((len(l) - len(l.lstrip(' '))) / 2), l] for l in trace[:-1]]
+        trace = {trace[-1]: lines}  # trace[-1] is the exception, the rest is traceback.
+        return {'exception': trace}
 
 
-eel.start('index.html', size=(900, 900))
+@eel.expose
+def get_output_file_content(p):
+    """"
+    Get a 2D list including All of the output file
+    :param p: path to file
+    :type p: str
+    :return: 2D list including the output file
+    :rtype: List[List[str]]
+    """
+    try:
+        table = []
+        if os.path.splitext(p)[1].lower() == '.xlsx':
+            df = pd.read_excel(p, sheet_name=0)
+            table = [df.columns.values.tolist()] + df.values.tolist()
+
+        elif os.path.splitext(p)[1].lower() == '.csv':
+            df = pd.read_csv(p)
+            table = [df.columns.values.tolist()] + df.values.tolist()
+
+        return {'table': table}
+
+    except Exception:
+        trace = traceback.format_exc().split('\n')[:-1]  # Last line is always empty
+        lines = [[int((len(l) - len(l.lstrip(' '))) / 2), l] for l in trace[:-1]]
+        trace = {trace[-1]: lines}  # trace[-1] is the exception, the rest is traceback.
+        return {'exception', trace}
+
+
+eel.start('index.html', size=(650, 650))

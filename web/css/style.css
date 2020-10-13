@@ -1,0 +1,19 @@
+body {
+    overflow-x: hidden;
+}
+
+h1 {
+    text-align: center;
+}
+
+.modal-body {
+    overflow-x: scroll;
+}
+
+#prog {
+    width: 0%;
+}
+
+.pl {
+    padding-left: 0.5%;
+}

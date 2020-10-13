@@ -8,38 +8,96 @@
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     </head>
-    <body style="overflow: hidden">
-        <h1 style="text-align: center">Passportable</h1>
+    <body>
+        <h1>Passportable</h1>
+        <div class="modal fade" id="general-modal" data-keyboard="false" tabindex="-1" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title"></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                </div>
+            </div>
+        </div>
         <form>
             <div class="input-group px-3">
-                <div class="input-group-prepend">
-                    <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#images-folder-modal">Image Folder:</button>
-                </div>
                 <input type="text" class="form-control" placeholder="Path to images folder" id="ifp">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" id="images-folder" type="button">Browse</button>
                 </div>
+                <div class="pl">
+                    <button class="btn btn-primary" type="button" id="images-folder-modal-btn" disabled>View Images Folder</button>
+                </div>
+                <div class="modal fade" id="images-folder-modal" data-keyboard="false" tabindex="-1">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Images Folder</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">File Name</th>
+                              <th scope="col">Last Modified</th>
+                            </tr>
+                          </thead>
+                          <tbody id="images-folder-table">
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
             <div class="input-group px-3 my-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Output Folder:</span>
-                </div>
                 <input type="text" class="form-control" placeholder="Path to output file" id="ofp">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" id="output-file" type="button">Browse</button>
+                </div>
+                <div class="pl">
+                    <button class="btn btn-primary" type="button" id="output-file-modal-btn" disabled>View Output File</button>
+                </div>
+                <div class="modal fade" id="output-file-modal" data-keyboard="false" tabindex="-1">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Output File</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <table class="table" id="output-table">
+                        </table>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div>
         </form>
             <div class="row justify-content-center">
                 <button id="go" class="btn btn-success" disabled>GO</button>
             </div>
-        <div id="output" hidden>
-            <hr>
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" id="prog" style="width: 0%"></div>
+        <div id="output" class="alert alert-primary" role="alert" hidden>
+            <div class="alert-heading text-center">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" id="prog"></div>
+                </div>
+                <h6 id="percentage">0%</h6>
             </div>
-            <div class="overflow-auto" style="height: 610px;">
-                <p id="output_text"></p>
+            <hr>
+            <div class="overflow-auto">
+              <p id="output_text"></p>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -16,8 +16,13 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6189aeb0-8b05-42ba-a5e6-d85739bf92da" name="Default Changelist" comment="- Made it work (backend.js)&#10;- Made the response only include the basename of the file (ui.py)&#10;- Added output in the app (backend.js)&#10;- Removed unnecessary console.log()s (backend.js)">
+    <list default="true" id="6189aeb0-8b05-42ba-a5e6-d85739bf92da" name="Default Changelist" comment="Style (bootstrap), jquery">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MRZ.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MRZ.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuck.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/fuck.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/js/backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/backend.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/index.js" afterDir="false" />
@@ -44,8 +49,10 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="CommandLine" />
+    <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -118,7 +125,19 @@
       <option name="presentableId" value="LOCAL‎00005" />
       <updated>1602149996208</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL‎00006" summary="Style (bootstrap), jquery">
+      <created>1602160315737</created>
+      <option name="number" value="LOCAL‎00006" />
+      <option name="presentableId" value="LOCAL‎00006" />
+      <updated>1602160315737</updated>
+    </task>
+    <task id="LOCAL‎00007" summary="Added installer&#10;Saved a bit of changes">
+      <created>1602441654913</created>
+      <option name="number" value="LOCAL‎00007" />
+      <option name="presentableId" value="LOCAL‎00007" />
+      <updated>1602441654913</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -157,45 +176,75 @@
     <MESSAGE value="update?" />
     <MESSAGE value="commit" />
     <MESSAGE value="- Made it work (backend.js)&#10;- Made the response only include the basename of the file (ui.py)&#10;- Added output in the app (backend.js)&#10;- Removed unnecessary console.log()s (backend.js)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Made it work (backend.js)&#10;- Made the response only include the basename of the file (ui.py)&#10;- Added output in the app (backend.js)&#10;- Removed unnecessary console.log()s (backend.js)" />
+    <MESSAGE value="Style (bootstrap), jquery" />
+    <MESSAGE value="Added installer&#10;Saved a bit of changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added installer&#10;Saved a bit of changes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602089238668">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602089238668" />
-    <state x="718" y="261" key="FileChooserDialogImpl" timestamp="1602146891709">
+    <state x="715" y="350" key="#com.intellij.tools.ToolEditorDialog" timestamp="1602604800300">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="718" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602146891709" />
+    <state x="715" y="350" key="#com.intellij.tools.ToolEditorDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602604800300" />
+    <state x="718" y="261" key="FileChooserDialogImpl" timestamp="1602604869983">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="718" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602604869983" />
     <state x="822" y="418" key="Github.ShareDialog" timestamp="1602085299001">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="822" y="418" key="Github.ShareDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602085299001" />
-    <state width="1900" height="136" key="GridCell.Tab.0.bottom" timestamp="1602160263603">
+    <state width="1900" height="87" key="GridCell.Tab.0.bottom" timestamp="1602610781528">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1900" height="136" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602160263603" />
-    <state width="1900" height="136" key="GridCell.Tab.0.center" timestamp="1602160263603">
+    <state width="1900" height="136" key="GridCell.Tab.0.bottom.inPresentationMode" timestamp="1602165985602">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1900" height="136" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602160263603" />
-    <state width="1900" height="136" key="GridCell.Tab.0.left" timestamp="1602160263602">
+    <state width="1900" height="136" key="GridCell.Tab.0.bottom.inPresentationMode/0.0.1920.1040@0.0.1920.1040" timestamp="1602165985602" />
+    <state width="1060" height="74" key="GridCell.Tab.0.bottom/0.0.1080.1880@0.0.1080.1880" timestamp="1602523893314" />
+    <state width="1900" height="87" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602610781528" />
+    <state width="1900" height="87" key="GridCell.Tab.0.center" timestamp="1602610781528">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1900" height="136" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602160263602" />
-    <state width="1900" height="136" key="GridCell.Tab.0.right" timestamp="1602160263603">
+    <state width="1900" height="136" key="GridCell.Tab.0.center.inPresentationMode" timestamp="1602165985602">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1900" height="136" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602160263603" />
-    <state x="491" y="165" key="SettingsEditor" timestamp="1602093803981">
+    <state width="1900" height="136" key="GridCell.Tab.0.center.inPresentationMode/0.0.1920.1040@0.0.1920.1040" timestamp="1602165985602" />
+    <state width="1060" height="74" key="GridCell.Tab.0.center/0.0.1080.1880@0.0.1080.1880" timestamp="1602523893313" />
+    <state width="1900" height="87" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602610781528" />
+    <state width="1900" height="87" key="GridCell.Tab.0.left" timestamp="1602610781528">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="491" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1602093803981" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602149999275">
+    <state width="1900" height="136" key="GridCell.Tab.0.left.inPresentationMode" timestamp="1602165985602">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602149999275" />
+    <state width="1900" height="136" key="GridCell.Tab.0.left.inPresentationMode/0.0.1920.1040@0.0.1920.1040" timestamp="1602165985602" />
+    <state width="1060" height="74" key="GridCell.Tab.0.left/0.0.1080.1880@0.0.1080.1880" timestamp="1602523893310" />
+    <state width="1900" height="87" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602610781528" />
+    <state width="1900" height="87" key="GridCell.Tab.0.right" timestamp="1602610781528">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1900" height="136" key="GridCell.Tab.0.right.inPresentationMode" timestamp="1602165985602">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1900" height="136" key="GridCell.Tab.0.right.inPresentationMode/0.0.1920.1040@0.0.1920.1040" timestamp="1602165985602" />
+    <state width="1060" height="74" key="GridCell.Tab.0.right/0.0.1080.1880@0.0.1080.1880" timestamp="1602523893313" />
+    <state width="1900" height="87" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602610781528" />
+    <state x="491" y="165" key="SettingsEditor" timestamp="1602604902818">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="491" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1602604902818" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602160318281">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602160318281" />
+    <state x="566" y="130" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1602162538588">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="566" y="130" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1602162538588" />
     <state x="742" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602147018020">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -204,9 +253,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="761" y="426" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602146966617" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1602147157737">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1602441751207">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602147157737" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602441751207" />
   </component>
 </project>
