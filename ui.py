@@ -7,6 +7,8 @@ import openpyxl as xl
 import time
 import pandas as pd
 import traceback
+import platform
+import sys
 
 eel.init('web')
 
@@ -68,7 +70,9 @@ def get_files(p):
         for f in os.listdir(p):
             if os.path.splitext(f)[1].lower() not in valid_extensions:
                 continue
-            images.append(os.path.join(p, f).replace('\\', '/'))
+            ftime = time.strftime('%A, %B %d %Y at %H:%M', time.localtime(os.path.getmtime(os.path.join(p, f))))
+            fname = os.path.join(p, f).replace('\\', '/')
+            images.append([fname, ftime])
 
         return {'images': images}
 
@@ -96,10 +100,10 @@ def save_passport(image, xlsx, y2k=30):
         mrz = Mrz(image)
         if mrz.good:
             mrz.format_mrz(y2k)
-            # if os.path.splitext(xlsx)[1].lower() == '.xlsx':
-            # mrz.save_to_xlsx(wb, xlsx)
-            # elif os.path.splitext(xlsx)[1].lower() == '.csv':
-            # mrz.save_to_csv(xlsx)
+            if os.path.splitext(xlsx)[1].lower() == '.xlsx':
+                mrz.save_to_xlsx(wb, xlsx)
+            elif os.path.splitext(xlsx)[1].lower() == '.csv':
+                mrz.save_to_csv(xlsx)
             response = {'file': os.path.basename(image),
                         'name': f'{mrz.mrz["names"].title()} {mrz.mrz["surname"].title()}'}
         else:
@@ -166,7 +170,44 @@ def get_output_file_content(p):
         trace = traceback.format_exc().split('\n')[:-1]  # Last line is always empty
         lines = [[int((len(l) - len(l.lstrip(' '))) / 2), l] for l in trace[:-1]]
         trace = {trace[-1]: lines}  # trace[-1] is the exception, the rest is traceback.
-        return {'exception', trace}
+        return {'exception': trace}
 
 
-eel.start('index.html', size=(650, 650))
+@eel.expose
+def create_report(images):
+    """
+    Save report to an xlsx file
+    :param images: 2d list of all images
+    :return: None
+    """
+    try:
+        wb = xl.Workbook()
+        sheet = wb.active
+        sheet.cell(1, 1).value = '#'
+        sheet.cell(1, 2).value = 'File Name'
+        sheet.cell(1, 3).value = 'Last Modified'
+        sheet.cell(1, 4).value = 'Skipped'
+        row = sheet.max_row
+        for image in images:
+            sheet.cell(row + 1, 1).value = row
+            sheet.cell(row + 1, 2).value = image[0]
+            sheet.cell(row + 1, 3).value = image[1]
+            sheet.cell(row + 1, 4).value = image[2]
+            row += 1
+
+        if not os.path.exists('C:\\Passportable\\logs'):
+            os.makedirs('C:\\Passportable\\logs')
+        name = 'C:\\Passportable\\logs\\' + str(time.strftime('%A, %B %d %Y at %H-%M', time.localtime())) + '.xlsx'
+        wb.save(filename=name)
+        os.startfile(name)
+        return {'name': name}
+
+    except Exception:
+        trace = traceback.format_exc().split('\n')[:-1]  # Last line is always empty
+        lines = [[int((len(l) - len(l.lstrip(' '))) / 2), l] for l in trace[:-1]]
+        trace = {trace[-1]: lines}  # trace[-1] is the exception, the rest is traceback.
+        return {'exception': trace}
+
+
+if __name__ == '__main__':
+    eel.start('index.html', size=(650, 650))

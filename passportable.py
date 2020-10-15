@@ -15,6 +15,8 @@ class Mrz:
             self.mrz = {k: str(v) for k, v in self.mrz.items()}
             print(f"**Saving {self.mrz['names'].title()} {self.mrz['surname'].title()}'s passport.**")
             self.good = True
+            self.num_filler = '0' * len(self.mrz['number'].replace('<', ''))
+            self.per_filler = '0' * len(self.mrz['personal_number'].repalce('<', ''))
         else:
             print(f"**Skipping {os.path.split(self.filename)[1]} because no MRZ was found.**")
             self.good = False
@@ -31,7 +33,7 @@ class Mrz:
         eyear = f'20{eyear}' if int(eyear) <= int(y2kprefix) else f'19{eyear}'
         self.mrz['date_of_birth'] = time.strftime(f"%d/%m/{byear}", time.strptime(birth_date, "%y%m%d"))
         self.mrz['expiration_date'] = time.strftime(f"%d/%m/{eyear}", time.strptime(expiration_date, "%y%m%d"))
-        if all(c in '0123456789' for c in self.mrz['number']):
+        if all(c in '0123456789' for c in self.mrz['number']) and self.mrz['number'][0] != '0':
             self.mrz['number'] = int(self.mrz['number'])
         # format ID:
         if self.mrz['mrz_type'] == 'TD3':
@@ -46,19 +48,17 @@ class Mrz:
         sheet.cell(row + 1, 3).value = self.mrz['names']
         sheet.cell(row + 1, 4).value = self.mrz['surname']
         sheet.cell(row + 1, 5).value = self.mrz['number']
-        sheet.cell(row + 1, 5).number_format = '0' * len(str(self.mrz['number']))
+        sheet.cell(row + 1, 5).number_format = self.num_filler
         sheet.cell(row + 1, 6).value = self.mrz['nationality']
         sheet.cell(row + 1, 7).value = self.mrz['date_of_birth']
         sheet.cell(row + 1, 8).value = self.mrz['sex']
         sheet.cell(row + 1, 9).value = self.mrz['expiration_date']
         if self.mrz['mrz_type'] == 'TD3':
             sheet.cell(row + 1, 10).value = self.mrz['personal_number']
-            sheet.cell(row + 1, 10).number_format = '0' * len(str(self.mrz['personal_number']))
+            sheet.cell(row + 1, 10).number_format = self.per_filler
 
-            workbook.save(output_path)
-            print(f"Saved {self.mrz['names'].title()} {self.mrz['surname'].title()}'s passport.")
-        else:
-            print(f"Skiped {os.path.split(self.filename)[1]} because no MRZ was found")
+        workbook.save(output_path)
+        print(f"Saved {self.mrz['names'].title()} {self.mrz['surname'].title()}'s passport.")
 
     def save_to_csv(self, output_path):
         with open(output_path, 'r') as f:

@@ -16,14 +16,54 @@ const exceptionModal = (e) => {
     modalTitle.text('An error occurred!');
     let output = '<div class="alert alert-danger" role="alert"><div class="alert-heading">';
     output += `<h5>${exception}</h5>`;
-    output += `<hr><div class="text-center"><small class="text-muted"><a href="${link}" class="alert-link" target="_blank">Contact Developer</a></small></div><hr>`;
+    output += `<hr><div class="text-center"><small class="text-muted"><a href="${link}" class="alert-link" target="_blank">Contact Developer</a></small></div><hr></div>`;
+    output += '<button class="btn btn-outline-info btn-sm py-1 sticky-top px-1 btn-clipboard float-right" style="font-size: 0.8em;" data-clipboard-target="#traceback" data-toggle="tooltip" data-placement="top" title="Copy to clipboard">Copy</button>';
     output += '<p id="traceback">';
     for (let i = 0; i < traceback.length; i++) {
-        output += `${"&ensp;".repeat(traceback[i][0])}${traceback[i][1]}<br>`
+        output += `${"&ensp;".repeat(traceback[i][0])}${traceback[i][1]}<br>`;
     };
-    output += '</p>'
+    output += '</p>';
+    modalBody.html(output);
+    $('#general-modal').modal('show');
+};
+
+const skipModal = () => {
+    const modalTitle = $('#general-modal').find('.modal-title');
+    const modalBody = $('#general-modal').find('.modal-body');
+    modalTitle.text('Skipped Images');
+    const skippedImages = window.skipped;
+    let output = '<div class="alert alert-warning"><table class="table"><thead><tr><th scope="col">#</th><th scope="col">File Name</th><th scope="col">Last Modified</th></tr></thead>';
+    output += '<tbody>';
+    for (let i = 0; i < skippedImages.length; i++){
+        output += `<tr><td>${i + 1}</td><td>${skippedImages[i][0]}</td><td>${skippedImages[i][1]}</td></tr>`;
+    };
+    output += '</tbody></table>';
+    output += '<div class="row justify-content-center"><button class="btn btn-secondary create-report skipped">Create a file including all skipped images</button></div></div>'
     modalBody.html(output)
     $('#general-modal').modal('show')
+    $('.create-report').on('click', createReport);
+};
+
+const successModal = () => {
+    const modalTitle = $('#general-modal').find('.modal-title');
+    const modalBody = $('#general-modal').find('.modal-body');
+    modalTitle.text('Success!');
+    const imagesNumber = window.images['images'].length;
+    const skippedNumber = window.skipped.length;
+    const successNumber = imagesNumber - skippedNumber;
+    let output =  '<div class="alert alert-success"><div class="alert-heading"><h5 class="text-center">Finished going through all of the files</h5></div>';
+    output += '<hr>';
+    output += `<div class="alert-body clearfix"><ul class="list-unstyled"><li>Went through ${imagesNumber} images.</li>`;
+    output += `<li>Successfully added ${successNumber} images to the output file.</li>`;
+    output += `<li>Skipped ${skippedNumber} images.`;
+    output += `</ul><button class="btn btn-secondary float-left" id="view-skipped">View skipped files</button>`
+    output += `<button class="btn btn-secondary create-report images float-right">Create a file of all skipped images</button></div></div>`;
+    modalBody.html(output);
+    $('#general-modal').modal('show');
+    $('.create-report').on('click', createReport);
+    $('#view-skipped').on('click', function (e) {
+        skipModal();
+    });
 };
 //~~~~~~~~~~~~~~~~~~
 // Button functions
@@ -75,7 +115,7 @@ const getMRZs = async (event) => {
     $('#output').removeAttr("hidden");
     const images = window.images['images'];
     for (let i = 0; i < images.length; i++) {
-        response = await savePassport(images[i], $('#ofp').val());
+        response = await savePassport(images[i][0], $('#ofp').val());
         if (response['exception']) {
             window.skipped.push(images[i]);
             exceptionModal(response['exception']);
@@ -83,21 +123,22 @@ const getMRZs = async (event) => {
             $('#prog').width(((i + 1) / images.length) * 100 + '%');
             $('#percentage').text(((i + 1) / images.length) * 100 + '%');
             if (response['name']) {
-                output = 'Saved <b>'
+                output = '<li>Saved <b>'
                 output += response["name"]
                 output += "'s</b> passport. (File: <b>"
                 output += response["file"]
-                output += ")</b><br>"
+                output += ")</b></li>"
                 $('#output_text').append(output);
             } else {
-                output = 'Skipped <b>'
+                output = '<li>Skipped <b>'
                 output += response["file"]
-                output += "</b> because no MRZ was found <br>"
+                output += "</b> because no MRZ was found </li>"
                 $('#output_text').append(output);
-                window.skipped.push(response['file'])
+                window.skipped.push([response["file"], images[i][1]])
             };
         };
     };
+    successModal();
 };
 
 const getImagesFolderContent = async (event) => {
@@ -147,6 +188,45 @@ const getOutputFileContent = async (event) => {
        $('#output-file-modal').modal('show');
    };
 };
+
+const createReport = async (event) => {
+    if (event.currentTarget.className.indexOf('skipped') == -1) {
+        const images = window.images['images'];
+        const skipped = window.skipped;
+        let combined = [];
+        for (let i = 0; i < images.length; i++) {
+            skip = false;
+            for (let j = 0; j < skipped.length; j++) {
+                if (images[i][0].includes(skipped[j][0])) {
+                    skip = true;
+                };
+            };
+            if (skip) {
+                combined.push([images[i][0], images[i][1], true]);
+            } else {
+                combined.push([images[i][0], images[i][1], false]);
+            };
+        };
+        let name = await askSave(combined);
+        if (name['exception']) {
+            exceptionModal(name['exception']);
+        } else {
+            window.alert(`The file was saved at ${name['name']}`);
+        };
+    } else {
+        let skipped = window.skipped;
+        let combined = [];
+        for (let i = 0; i < skipped.length; i++) {
+            combined.push([skipped[i][0], skipped[i][1], true])
+        };
+        let name = await askSave(combined);
+        if (name['exception']) {
+            exceptionModal(name['exception']);
+        } else {
+            window.alert(`The file was saved at ${name}`);
+        };
+    };
+};
 //~~~~~~~~~~~~~~~~~~
 // Event handling
 //~~~~~~~~~~~~~~~~~~
@@ -159,6 +239,7 @@ $('#general-modal').on('hidden.bs.modal', function (e) {
     $('#general-modal').find('.modal-title').text('');
     $('#general-modal').find('.modal-body').html('');
 });
+
 //~~~~~~~~~~~~~~~~~~
 // Toggle buttons
 //~~~~~~~~~~~~~~~~~~
