@@ -15,7 +15,7 @@ There are two ways to install Passportable: The [easy way](#The-Easy-Way), and t
    * You can use `curl -L -o tesseract-installer.exe https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-v5.0.0-alpha.20200328.exe`.
    * You can also just download the installer from the [Tessreact Repo](https://github.com/UB-Mannheim/tesseract/wiki).
  * Add the Tesseract-OCR installation folder to PATH (default `C:\Program Files\Tesseract-OCR`).
- * Install the necesarry packages using pip:
+ * Install the necessary packages using pip:
    * `pip install eel`
    * `pip install passporteye`
    * `pip install openpyxl`
