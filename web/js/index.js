@@ -72,7 +72,8 @@ const getImagesFolderPath = async (event) => {
     const imagesFolderPath = $('#ifp');
     const path = await askForFolder();
     if (path['exception']) {
-        exceptionModal(path['exception'])
+        exceptionModal(path['exception']);
+        return;
     } else {
         if (path['folder']) {
             imagesFolderPath.val(path['folder']);
@@ -93,7 +94,8 @@ const getOutputFilePath = async (event) => {
     const outputFilePath = $('#ofp');
     const path = await askForFile();
     if (path['exception']) {
-        exceptionModal(path['exception'])
+        exceptionModal(path['exception']);
+        return;
     } else {
         if (path['file_path']) {
             outputFilePath.val(path['file_path']);
@@ -119,9 +121,10 @@ const getMRZs = async (event) => {
         if (response['exception']) {
             window.skipped.push(images[i]);
             exceptionModal(response['exception']);
+            return;
         } else {
             $('#prog').width(((i + 1) / images.length) * 100 + '%');
-            $('#percentage').text(((i + 1) / images.length) * 100 + '%');
+            $('#percentage').text(Math.round(((i + 1) / images.length) * 100) + '%');
             if (response['name']) {
                 output = '<li>Saved <b>'
                 output += response["name"]
@@ -145,6 +148,7 @@ const getImagesFolderContent = async (event) => {
     let content = await askForFolderContent($('#ifp').val());
     if (content['exception']) {
         exceptionModal(content['exception']);
+        return;
     } else {
         $('#images-folder-table').html('');
         content = content['images']
@@ -166,6 +170,7 @@ const getOutputFileContent = async (event) => {
     let content = await askForOutputContent($('#ofp').val());
     if (content['exception']) {
         exceptionModal(content['exception']);
+        return;
     } else {
         $('#output-file-table').html('');
         content = content['table'];
@@ -210,6 +215,7 @@ const createReport = async (event) => {
         let name = await askSave(combined);
         if (name['exception']) {
             exceptionModal(name['exception']);
+            return;
         } else {
             window.alert(`The file was saved at ${name['name']}`);
         };
@@ -222,6 +228,7 @@ const createReport = async (event) => {
         let name = await askSave(combined);
         if (name['exception']) {
             exceptionModal(name['exception']);
+            return;
         } else {
             window.alert(`The file was saved at ${name}`);
         };

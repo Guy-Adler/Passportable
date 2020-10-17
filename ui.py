@@ -6,9 +6,9 @@ from passportable import Mrz
 import openpyxl as xl
 import time
 import pandas as pd
+import winshell
 import traceback
-import platform
-import sys
+
 
 eel.init('web')
 
@@ -195,9 +195,10 @@ def create_report(images):
             sheet.cell(row + 1, 4).value = image[2]
             row += 1
 
-        if not os.path.exists('C:\\Passportable\\logs'):
-            os.makedirs('C:\\Passportable\\logs')
-        name = 'C:\\Passportable\\logs\\' + str(time.strftime('%A, %B %d %Y at %H-%M', time.localtime())) + '.xlsx'
+        p = os.path.join(winshell.my_documents(), 'Passportable\\logs')
+        if not os.path.exists(p):
+            os.makedirs(p)
+        name = os.path.join(p, str(time.strftime('%A, %B %d %Y at %H-%M', time.localtime())) + '.xlsx')
         wb.save(filename=name)
         os.startfile(name)
         return {'name': name}

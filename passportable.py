@@ -1,6 +1,5 @@
 import os
 import time
-import openpyxl as xl
 from passporteye import read_mrz
 import csv
 
@@ -16,7 +15,8 @@ class Mrz:
             print(f"**Saving {self.mrz['names'].title()} {self.mrz['surname'].title()}'s passport.**")
             self.good = True
             self.num_filler = '0' * len(self.mrz['number'].replace('<', ''))
-            self.per_filler = '0' * len(self.mrz['personal_number'].repalce('<', ''))
+            if self.mrz['mrz_type'] == 'TD3':
+                self.per_filler = '0' * len(self.mrz['personal_number'].replace('<', ''))
         else:
             print(f"**Skipping {os.path.split(self.filename)[1]} because no MRZ was found.**")
             self.good = False
