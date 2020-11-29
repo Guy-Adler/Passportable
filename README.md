@@ -6,9 +6,8 @@ read a [MRZ](https://en.wikipedia.org/wiki/Machine-readable_passport).
 The MRZ is then processed, and saved to the file.
 ## Installation
 There are two ways to install Passportable: The [easy way](#The-Easy-Way), and the [hard way](#The-Hard-Way).
-### ~~The Easy Way:~~
- * ~~Install [Python (3.8.5)](https://www.python.org/downloads/release/python-385/)~~
- * ~~Use the latest installer over at the [releases](https://github.com/Guy-Adler/solid-journey/releases).~~
+### The Easy Way:
+ * Use the latest installer over at the [releases](https://github.com/Guy-Adler/solid-journey/releases).
 ### The Hard Way:
  * Install [Python (3.8.5 recommended, but any version above 3.8 will probably work)](https://www.python.org/downloads/)
  * Install Tesseract OCR
